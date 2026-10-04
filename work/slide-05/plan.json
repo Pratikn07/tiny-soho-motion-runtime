@@ -1,0 +1,328 @@
+{
+ "slide": "inputs/slide-05.png",
+ "concept": "comparison",
+ "hook_line": "l1",
+ "duration": 7.5,
+ "brand": true,
+ "lines": [
+  {
+   "id": "l1",
+   "role": "heading",
+   "box": [
+    138,
+    247,
+    456,
+    306
+   ],
+   "runs": [
+    {
+     "text": "I swapped:",
+     "rose": false
+    }
+   ],
+   "size": 64
+  },
+  {
+   "id": "l2",
+   "role": "heading",
+   "box": [
+    657,
+    247,
+    777,
+    301
+   ],
+   "runs": [
+    {
+     "text": "For:",
+     "rose": false
+    }
+   ],
+   "size": 64
+  },
+  {
+   "id": "l3",
+   "role": "body",
+   "box": [
+    145,
+    365,
+    455,
+    421
+   ],
+   "runs": [
+    {
+     "text": "“Stop trying.",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 45
+  },
+  {
+   "id": "l4",
+   "role": "body",
+   "box": [
+    175,
+    432,
+    462,
+    483
+   ],
+   "runs": [
+    {
+     "text": "You’re okay.”",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 45
+  },
+  {
+   "id": "l5",
+   "role": "body",
+   "box": [
+    612,
+    368,
+    998,
+    421
+   ],
+   "runs": [
+    {
+     "text": "“You can be upset.",
+     "rose": true
+    }
+   ],
+   "align": "center",
+   "size": 45
+  },
+  {
+   "id": "l6",
+   "role": "body",
+   "box": [
+    648,
+    432,
+    972,
+    479
+   ],
+   "runs": [
+    {
+     "text": "I’m right here.”",
+     "rose": true
+    }
+   ],
+   "align": "center",
+   "size": 45
+  },
+  {
+   "id": "l7",
+   "role": "body",
+   "box": [
+    310,
+    578,
+    780,
+    613
+   ],
+   "runs": [
+    {
+     "text": "I stopped trying to make every",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 34
+  },
+  {
+   "id": "l8",
+   "role": "body",
+   "box": [
+    374,
+    622,
+    722,
+    657
+   ],
+   "runs": [
+    {
+     "text": "hard feeling disappear.",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 34
+  },
+  {
+   "id": "l9",
+   "role": "body",
+   "box": [
+    256,
+    673,
+    840,
+    707
+   ],
+   "runs": [
+    {
+     "text": "Sometimes they don’t need me to fix it.",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 34
+  },
+  {
+   "id": "l10",
+   "role": "body",
+   "box": [
+    376,
+    717,
+    725,
+    753
+   ],
+   "runs": [
+    {
+     "text": "They just need to know",
+     "rose": true
+    }
+   ],
+   "align": "center",
+   "size": 34
+  },
+  {
+   "id": "l11",
+   "role": "body",
+   "box": [
+    329,
+    763,
+    768,
+    799
+   ],
+   "runs": [
+    {
+     "text": "they don’t have to feel it alone.",
+     "rose": true
+    }
+   ],
+   "align": "center",
+   "size": 34
+  }
+ ],
+ "remove_extra": [
+  [
+   400,
+   40,
+   695,
+   145
+  ]
+ ],
+ "protect": [
+  {
+   "label": "arrow",
+   "box": [
+    498,
+    422,
+    562,
+    452
+   ]
+  },
+  {
+   "label": "accent marks",
+   "box": [
+    952,
+    284,
+    1018,
+    342
+   ]
+  },
+  {
+   "label": "heart doodle",
+   "box": [
+    522,
+    815,
+    568,
+    868
+   ]
+  },
+  {
+   "label": "plush bunny",
+   "box": [
+    20,
+    940,
+    520,
+    1365
+   ]
+  }
+ ],
+ "motion": [
+  {
+   "line": "l1",
+   "effect": "none",
+   "at": 0
+  },
+  {
+   "line": "l3",
+   "effect": "none",
+   "at": 0,
+   "dur": 0.45
+  },
+  {
+   "line": "l4",
+   "effect": "none",
+   "at": 0,
+   "dur": 0.45
+  },
+  {
+   "line": "l2",
+   "effect": "slide-right",
+   "at": 0.3,
+   "dur": 0.45
+  },
+  {
+   "line": "l5",
+   "effect": "slide-right",
+   "at": 0.42,
+   "dur": 0.45
+  },
+  {
+   "line": "l6",
+   "effect": "slide-right",
+   "at": 0.52,
+   "dur": 0.45
+  },
+  {
+   "line": "l7",
+   "effect": "rise",
+   "at": 0.85,
+   "dur": 0.45
+  },
+  {
+   "line": "l8",
+   "effect": "rise",
+   "at": 0.95,
+   "dur": 0.45
+  },
+  {
+   "line": "l9",
+   "effect": "rise",
+   "at": 1.05,
+   "dur": 0.45
+  },
+  {
+   "line": "l10",
+   "effect": "slow",
+   "at": 1.2,
+   "dur": 0.55
+  },
+  {
+   "line": "l11",
+   "effect": "slow",
+   "at": 1.3,
+   "dur": 0.55
+  }
+ ],
+ "camera": {
+  "from": 1.0,
+  "to": 1.035,
+  "focus": [
+   0.5,
+   0.45
+  ]
+ },
+ "scene_prompt": "A soft plush bunny sits on a cosy rug beside a knitted blanket and wooden toys; warm window light drifts slowly across the room and the blanket's fibres catch the light.",
+ "scene_avoid": "No camera moves. No people or hands. The bunny and toys stay put; nothing moves into the upper half where the text sits."
+}

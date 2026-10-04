@@ -1,0 +1,239 @@
+{
+ "slide": "inputs/slide-03.png",
+ "concept": "story",
+ "hook_line": "l1",
+ "duration": 7.0,
+ "brand": true,
+ "lines": [
+  {
+   "id": "l1",
+   "role": "headline",
+   "box": [
+    180,
+    240,
+    880,
+    326
+   ],
+   "runs": [
+    {
+     "text": "At daycare dropoff,",
+     "rose": false
+    }
+   ],
+   "size": 84
+  },
+  {
+   "id": "l2",
+   "role": "headline",
+   "box": [
+    182,
+    338,
+    415,
+    450
+   ],
+   "runs": [
+    {
+     "text": "I cry.",
+     "rose": true
+    }
+   ]
+  },
+  {
+   "id": "l3",
+   "role": "body",
+   "box": [
+    186,
+    482,
+    690,
+    536
+   ],
+   "runs": [
+    {
+     "text": "Not because I hate",
+     "rose": false
+    }
+   ],
+   "size": 49
+  },
+  {
+   "id": "l4",
+   "role": "body",
+   "box": [
+    188,
+    555,
+    374,
+    608
+   ],
+   "runs": [
+    {
+     "text": "it here.",
+     "rose": false
+    }
+   ],
+   "size": 49
+  },
+  {
+   "id": "l5",
+   "role": "body",
+   "box": [
+    190,
+    682,
+    724,
+    744
+   ],
+   "runs": [
+    {
+     "text": "Because the morning",
+     "rose": false
+    }
+   ],
+   "size": 49
+  },
+  {
+   "id": "l6",
+   "role": "body",
+   "box": [
+    190,
+    755,
+    654,
+    806
+   ],
+   "runs": [
+    {
+     "text": "moved too fast and",
+     "rose": false
+    }
+   ],
+   "size": 49
+  },
+  {
+   "id": "l7",
+   "role": "body",
+   "box": [
+    190,
+    822,
+    704,
+    880
+   ],
+   "runs": [
+    {
+     "text": "you’re leaving before",
+     "rose": false
+    }
+   ],
+   "size": 49
+  },
+  {
+   "id": "l8",
+   "role": "body",
+   "box": [
+    190,
+    895,
+    484,
+    950
+   ],
+   "runs": [
+    {
+     "text": "I caught up.",
+     "rose": false
+    }
+   ],
+   "size": 49
+  }
+ ],
+ "remove_extra": [
+  [
+   415,
+   40,
+   710,
+   145
+  ]
+ ],
+ "protect": [
+  {
+   "label": "backpack",
+   "box": [
+    705,
+    760,
+    1062,
+    1082
+   ]
+  },
+  {
+   "label": "rainbow print",
+   "box": [
+    950,
+    10,
+    1122,
+    320
+   ]
+  },
+  {
+   "label": "towel on hook",
+   "box": [
+    940,
+    380,
+    1122,
+    900
+   ]
+  }
+ ],
+ "motion": [
+  {
+   "line": "l1",
+   "effect": "none",
+   "at": 0
+  },
+  {
+   "line": "l2",
+   "effect": "none",
+   "at": 0
+  },
+  {
+   "line": "l3",
+   "effect": "slow",
+   "at": 0.45,
+   "dur": 0.6
+  },
+  {
+   "line": "l4",
+   "effect": "slow",
+   "at": 0.65,
+   "dur": 0.6
+  },
+  {
+   "line": "l5",
+   "effect": "slow",
+   "at": 0.95,
+   "dur": 0.6
+  },
+  {
+   "line": "l6",
+   "effect": "slow",
+   "at": 1.1,
+   "dur": 0.6
+  },
+  {
+   "line": "l7",
+   "effect": "slow",
+   "at": 1.25,
+   "dur": 0.6
+  },
+  {
+   "line": "l8",
+   "effect": "slow",
+   "at": 1.4,
+   "dur": 0.6
+  }
+ ],
+ "camera": {
+  "from": 1.0,
+  "to": 1.035,
+  "focus": [
+   0.5,
+   0.45
+  ]
+ },
+ "scene_prompt": "Warm morning sun pours through the daycare doorway; dust motes drift in the light and the soft towel on the hook sways very slightly, while the pink backpack sits still on the bench.",
+ "scene_avoid": "No camera moves. No people entering frame. Nothing moves across the left and centre text area. Keep the backpack and the rainbow print unchanged."
+}

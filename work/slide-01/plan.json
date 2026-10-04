@@ -1,0 +1,276 @@
+{
+ "slide": "inputs/slide-01.png",
+ "concept": "story",
+ "hook_line": "l1",
+ "duration": 7.0,
+ "brand": true,
+ "lines": [
+  {
+   "id": "l1",
+   "role": "headline",
+   "box": [
+    104,
+    207,
+    290,
+    314
+   ],
+   "runs": [
+    {
+     "text": "You",
+     "rose": true
+    }
+   ],
+   "size": 102,
+   "y": 285.0
+  },
+  {
+   "id": "l1b",
+   "role": "headline",
+   "box": [
+    302,
+    207,
+    1016,
+    314
+   ],
+   "size": 102,
+   "y": 285.0,
+   "x": 301.5,
+   "runs": [
+    {
+     "text": "pick my clothes.",
+     "rose": false
+    }
+   ]
+  },
+  {
+   "id": "l2",
+   "role": "body",
+   "box": [
+    104,
+    358,
+    654,
+    418
+   ],
+   "runs": [
+    {
+     "text": "I had a plan for today",
+     "rose": false
+    }
+   ],
+   "size": 52
+  },
+  {
+   "id": "l3",
+   "role": "body",
+   "box": [
+    104,
+    425,
+    576,
+    480
+   ],
+   "runs": [
+    {
+     "text": "and it involved the",
+     "rose": false
+    }
+   ],
+   "size": 52
+  },
+  {
+   "id": "l4",
+   "role": "body",
+   "box": [
+    104,
+    495,
+    478,
+    550
+   ],
+   "runs": [
+    {
+     "text": "dinosaur shirt.",
+     "rose": true
+    }
+   ],
+   "size": 52
+  },
+  {
+   "id": "l5",
+   "role": "body",
+   "box": [
+    104,
+    605,
+    608,
+    662
+   ],
+   "runs": [
+    {
+     "text": "The dinosaur shirt is",
+     "rose": false
+    }
+   ],
+   "size": 52
+  },
+  {
+   "id": "l6",
+   "role": "body",
+   "box": [
+    104,
+    668,
+    482,
+    727
+   ],
+   "runs": [
+    {
+     "text": "in",
+     "rose": false
+    },
+    {
+     "text": "the laundry.",
+     "rose": true
+    }
+   ],
+   "size": 52
+  },
+  {
+   "id": "l7",
+   "role": "body",
+   "box": [
+    104,
+    780,
+    646,
+    842
+   ],
+   "runs": [
+    {
+     "text": "This is",
+     "rose": false
+    },
+    {
+     "text": "the worst thing",
+     "rose": true
+    }
+   ],
+   "size": 52
+  },
+  {
+   "id": "l8",
+   "role": "body",
+   "box": [
+    104,
+    848,
+    684,
+    907
+   ],
+   "runs": [
+    {
+     "text": "that has ever happened.",
+     "rose": false
+    }
+   ],
+   "size": 52
+  }
+ ],
+ "remove_extra": [
+  [
+   395,
+   40,
+   725,
+   155
+  ]
+ ],
+ "protect": [
+  {
+   "label": "dinosaur shirt",
+   "box": [
+    110,
+    1000,
+    440,
+    1310
+   ]
+  },
+  {
+   "label": "clothes rack",
+   "box": [
+    700,
+    385,
+    1122,
+    880
+   ]
+  }
+ ],
+ "motion": [
+  {
+   "line": "l1",
+   "effect": "none",
+   "at": 0
+  },
+  {
+   "line": "l1b",
+   "effect": "none",
+   "at": 0
+  },
+  {
+   "line": "l2",
+   "effect": "rise",
+   "at": 0.45,
+   "dur": 0.45
+  },
+  {
+   "line": "l3",
+   "effect": "rise",
+   "at": 0.6,
+   "dur": 0.45
+  },
+  {
+   "line": "l4",
+   "effect": "rise",
+   "at": 0.75,
+   "dur": 0.45
+  },
+  {
+   "line": "l5",
+   "effect": "rise",
+   "at": 1.0,
+   "dur": 0.45
+  },
+  {
+   "line": "l6",
+   "effect": "rise",
+   "at": 1.15,
+   "dur": 0.45
+  },
+  {
+   "line": "l7",
+   "effect": "rise",
+   "at": 1.35,
+   "dur": 0.45
+  },
+  {
+   "line": "l8",
+   "effect": "rise",
+   "at": 1.5,
+   "dur": 0.45
+  },
+  {
+   "line": "l7",
+   "words": [
+    2,
+    5
+   ],
+   "effect": "droop",
+   "at": 2.3,
+   "amount": 0.4,
+   "dur": 0.6
+  }
+ ],
+ "camera": {
+  "from": 1.0,
+  "to": 1.04,
+  "focus": [
+   0.3,
+   0.8
+  ]
+ },
+ "scene_prompt": "Soft morning light drifts across the nursery; the dinosaur shirt in the laundry basket shifts slightly as the fabric settles, and the hanging clothes sway gently on the rack.",
+ "scene_avoid": "No camera moves. No people or hands entering frame. Nothing moves into the upper-left text area."
+}

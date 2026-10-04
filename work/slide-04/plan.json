@@ -1,0 +1,682 @@
+{
+ "slide": "inputs/slide-04.png",
+ "concept": "recipe",
+ "hook_line": "l1",
+ "duration": 8.0,
+ "brand": true,
+ "lines": [
+  {
+   "id": "l1",
+   "role": "display",
+   "box": [
+    265,
+    145,
+    868,
+    228
+   ],
+   "runs": [
+    {
+     "text": "NUT BUTTER",
+     "rose": false
+    }
+   ]
+  },
+  {
+   "id": "l2",
+   "role": "display",
+   "box": [
+    160,
+    248,
+    968,
+    332
+   ],
+   "runs": [
+    {
+     "text": "TOAST SOLDIERS",
+     "rose": true
+    }
+   ]
+  },
+  {
+   "id": "l3",
+   "role": "heading",
+   "box": [
+    85,
+    410,
+    286,
+    448
+   ],
+   "runs": [
+    {
+     "text": "Ingredients:",
+     "rose": true
+    }
+   ],
+   "size": 40
+  },
+  {
+   "id": "l4",
+   "role": "body",
+   "box": [
+    87,
+    477,
+    310,
+    504
+   ],
+   "runs": [
+    {
+     "text": "Whole grain toast",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 500
+  },
+  {
+   "id": "l5",
+   "role": "body",
+   "box": [
+    87,
+    511,
+    383,
+    539
+   ],
+   "runs": [
+    {
+     "text": "Peanut or almond butter",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 534
+  },
+  {
+   "id": "l6",
+   "role": "body",
+   "box": [
+    87,
+    546,
+    247,
+    573
+   ],
+   "runs": [
+    {
+     "text": "Hemp hearts",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 568
+  },
+  {
+   "id": "l7",
+   "role": "body",
+   "box": [
+    87,
+    581,
+    217,
+    606
+   ],
+   "runs": [
+    {
+     "text": "Cinnamon",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 602
+  },
+  {
+   "id": "l8",
+   "role": "body",
+   "box": [
+    87,
+    615,
+    284,
+    642
+   ],
+   "runs": [
+    {
+     "text": "Mashed banana",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 636
+  },
+  {
+   "id": "l9",
+   "role": "heading",
+   "box": [
+    87,
+    720,
+    241,
+    760
+   ],
+   "runs": [
+    {
+     "text": "Mom tip:",
+     "rose": true
+    }
+   ],
+   "size": 40
+  },
+  {
+   "id": "l10",
+   "role": "body",
+   "box": [
+    87,
+    788,
+    309,
+    816
+   ],
+   "runs": [
+    {
+     "text": "Cut the toast into",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 812
+  },
+  {
+   "id": "l11",
+   "role": "body",
+   "box": [
+    87,
+    822,
+    348,
+    850
+   ],
+   "runs": [
+    {
+     "text": "strips and serve with",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 846
+  },
+  {
+   "id": "l12",
+   "role": "body",
+   "box": [
+    87,
+    857,
+    283,
+    883
+   ],
+   "runs": [
+    {
+     "text": "mashed banana",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 880
+  },
+  {
+   "id": "l13",
+   "role": "body",
+   "box": [
+    87,
+    890,
+    232,
+    920
+   ],
+   "runs": [
+    {
+     "text": "for dipping.",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 914
+  },
+  {
+   "id": "l14",
+   "role": "heading",
+   "box": [
+    87,
+    987,
+    330,
+    1025
+   ],
+   "runs": [
+    {
+     "text": "Why it works:",
+     "rose": true
+    }
+   ],
+   "size": 40
+  },
+  {
+   "id": "l15",
+   "role": "body",
+   "box": [
+    87,
+    1052,
+    291,
+    1081
+   ],
+   "runs": [
+    {
+     "text": "Fast, filling, and",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 1074
+  },
+  {
+   "id": "l16",
+   "role": "body",
+   "box": [
+    87,
+    1086,
+    305,
+    1114
+   ],
+   "runs": [
+    {
+     "text": "ready in minutes.",
+     "rose": false
+    }
+   ],
+   "size": 26,
+   "y": 1108
+  },
+  {
+   "id": "l17",
+   "role": "eyebrow",
+   "box": [
+    440,
+    1151,
+    695,
+    1172
+   ],
+   "runs": [
+    {
+     "text": "INGREDIENTS:",
+     "rose": true
+    }
+   ],
+   "align": "center",
+   "size": 22
+  },
+  {
+   "id": "b1",
+   "role": "body",
+   "box": [
+    100,
+    1305,
+    231,
+    1334
+   ],
+   "runs": [
+    {
+     "text": "Whole grain",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 23.5,
+   "y": 1327
+  },
+  {
+   "id": "b2",
+   "role": "body",
+   "box": [
+    141,
+    1335,
+    193,
+    1360
+   ],
+   "runs": [
+    {
+     "text": "toast",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 23.5,
+   "y": 1356
+  },
+  {
+   "id": "b3",
+   "role": "body",
+   "box": [
+    338,
+    1305,
+    441,
+    1334
+   ],
+   "runs": [
+    {
+     "text": "Peanut or",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 23.5,
+   "y": 1327
+  },
+  {
+   "id": "b4",
+   "role": "body",
+   "box": [
+    314,
+    1335,
+    466,
+    1360
+   ],
+   "runs": [
+    {
+     "text": "almond butter",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 23.5,
+   "y": 1356
+  },
+  {
+   "id": "b5",
+   "role": "body",
+   "box": [
+    553,
+    1305,
+    618,
+    1334
+   ],
+   "runs": [
+    {
+     "text": "Hemp",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 23.5,
+   "y": 1327
+  },
+  {
+   "id": "b6",
+   "role": "body",
+   "box": [
+    554,
+    1335,
+    619,
+    1360
+   ],
+   "runs": [
+    {
+     "text": "hearts",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 23.5,
+   "y": 1356
+  },
+  {
+   "id": "b7",
+   "role": "body",
+   "box": [
+    717,
+    1305,
+    828,
+    1330
+   ],
+   "runs": [
+    {
+     "text": "Cinnamon",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 23.5,
+   "y": 1327
+  },
+  {
+   "id": "b8",
+   "role": "body",
+   "box": [
+    932,
+    1305,
+    1015,
+    1330
+   ],
+   "runs": [
+    {
+     "text": "Mashed",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 23.5,
+   "y": 1327
+  },
+  {
+   "id": "b9",
+   "role": "body",
+   "box": [
+    936,
+    1335,
+    1012,
+    1360
+   ],
+   "runs": [
+    {
+     "text": "banana",
+     "rose": false
+    }
+   ],
+   "align": "center",
+   "size": 23.5,
+   "y": 1356
+  }
+ ],
+ "remove_extra": [
+  [
+   420,
+   55,
+   705,
+   100
+  ]
+ ],
+ "protect": [
+  {
+   "label": "toast plate",
+   "box": [
+    405,
+    405,
+    1122,
+    1030
+   ]
+  },
+  {
+   "label": "ingredient bowls",
+   "box": [
+    66,
+    1172,
+    1050,
+    1298
+   ]
+  },
+  {
+   "label": "mug",
+   "box": [
+    1040,
+    225,
+    1122,
+    420
+   ]
+  }
+ ],
+ "motion": [
+  {
+   "line": "l1",
+   "effect": "none",
+   "at": 0
+  },
+  {
+   "line": "l2",
+   "effect": "none",
+   "at": 0
+  },
+  {
+   "line": "l3",
+   "effect": "rise",
+   "at": 0.3,
+   "dur": 0.4
+  },
+  {
+   "line": "l4",
+   "effect": "pop",
+   "at": 0.45,
+   "dur": 0.35
+  },
+  {
+   "line": "l5",
+   "effect": "pop",
+   "at": 0.53,
+   "dur": 0.35
+  },
+  {
+   "line": "l6",
+   "effect": "pop",
+   "at": 0.61,
+   "dur": 0.35
+  },
+  {
+   "line": "l7",
+   "effect": "pop",
+   "at": 0.69,
+   "dur": 0.35
+  },
+  {
+   "line": "l8",
+   "effect": "pop",
+   "at": 0.77,
+   "dur": 0.35
+  },
+  {
+   "line": "l9",
+   "effect": "rise",
+   "at": 0.8,
+   "dur": 0.4
+  },
+  {
+   "line": "l10",
+   "effect": "rise",
+   "at": 0.9,
+   "dur": 0.4
+  },
+  {
+   "line": "l11",
+   "effect": "rise",
+   "at": 0.98,
+   "dur": 0.4
+  },
+  {
+   "line": "l12",
+   "effect": "rise",
+   "at": 1.06,
+   "dur": 0.4
+  },
+  {
+   "line": "l13",
+   "effect": "rise",
+   "at": 1.14,
+   "dur": 0.4
+  },
+  {
+   "line": "l14",
+   "effect": "rise",
+   "at": 1.2,
+   "dur": 0.4
+  },
+  {
+   "line": "l15",
+   "effect": "rise",
+   "at": 1.3,
+   "dur": 0.4
+  },
+  {
+   "line": "l16",
+   "effect": "rise",
+   "at": 1.38,
+   "dur": 0.4
+  },
+  {
+   "line": "l17",
+   "effect": "fade",
+   "at": 0.9,
+   "dur": 0.4
+  },
+  {
+   "line": "b1",
+   "effect": "pop",
+   "at": 1.15,
+   "dur": 0.35
+  },
+  {
+   "line": "b2",
+   "effect": "pop",
+   "at": 1.15,
+   "dur": 0.35
+  },
+  {
+   "line": "b3",
+   "effect": "pop",
+   "at": 1.25,
+   "dur": 0.35
+  },
+  {
+   "line": "b4",
+   "effect": "pop",
+   "at": 1.25,
+   "dur": 0.35
+  },
+  {
+   "line": "b5",
+   "effect": "pop",
+   "at": 1.35,
+   "dur": 0.35
+  },
+  {
+   "line": "b6",
+   "effect": "pop",
+   "at": 1.35,
+   "dur": 0.35
+  },
+  {
+   "line": "b7",
+   "effect": "pop",
+   "at": 1.45,
+   "dur": 0.35
+  },
+  {
+   "line": "b8",
+   "effect": "pop",
+   "at": 1.55,
+   "dur": 0.35
+  },
+  {
+   "line": "b9",
+   "effect": "pop",
+   "at": 1.55,
+   "dur": 0.35
+  }
+ ],
+ "camera": {
+  "from": 1.0,
+  "to": 1.02,
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "scene_prompt": "Overhead-style still life of nut butter toast soldiers on a speckled plate; a faint wisp of steam rises from the mug, a crumb of hemp hearts settles, and soft window light shifts slowly across the table.",
+ "scene_avoid": "No camera moves. No hands or people. The plate, bowls and cards stay fixed; nothing moves over the left-hand cards or the bottom ingredient strip."
+}
