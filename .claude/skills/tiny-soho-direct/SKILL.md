@@ -117,7 +117,8 @@ slide, and never on the hook line. A stamp or droop only works if the words earn
    reads badly, and to score the four criteria. If you cannot start a subagent, do this review yourself as a cold
    read: the original first, then the frames, as if seeing them for the first time. Fix every real issue it finds,
    then repeat step 4.
-7. Render the full clip (`render.py` without `--stills`) and run `check.py` once more.
+7. Render the full clip (`render.py` without `--stills`) and run `check.py` once more. The full render also writes
+   `text-layer.png`, the settled text on transparency, which the app needs.
 8. Write `work/<slide>/notes.md`: final scores (yours and the reviewer's), what you changed in each round and why,
    and the scene prompt.
 

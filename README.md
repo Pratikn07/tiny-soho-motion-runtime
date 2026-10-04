@@ -22,6 +22,7 @@ It runs two ways:
 | `tools/clean.py` | Removes baked-in text inside the plan's line boxes, never inside protected boxes |
 | `tools/render.py` | Brand type plus word-level motion (rise, snap, slow, spring, stamp, pop, slides, droop, pulse, nudge) over the text-free image. Outputs stills, exact frames or an MP4 |
 | `tools/check.py` | Automatic checks: edges, overlaps, protected areas, hook on frame 0, timing |
+| `tools/jobio.py` | App jobs: validates the payload, downloads slides and uploads outputs, only to hosts in `runtime.json` |
 | `brand/` | Brand fonts (SIL Open Font License) and the wordmark |
 | `fixtures/` | Test slides. Each folder is one job |
 | `routine/PROMPT.md` | The prompt the cloud routine runs |

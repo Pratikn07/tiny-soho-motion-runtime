@@ -5,7 +5,8 @@
     python3 tools/render.py work/slide-03/plan.json --frames 1.6,1.75,1.9   # exact frames, e.g. mid-motion
 
 Writes into work/<name>/: preview.mp4, frames.jpg (a still every 0.5 s), first.png (frame 0), last.png and
-layout.json (where every word landed, used by tools/check.py).
+layout.json (where every word landed, used by tools/check.py) and text-layer.png (the settled text and logo on
+transparency, for the app's finishing step).
 """
 import json
 import math
@@ -364,6 +365,21 @@ def main():
     (out / "layout.json").write_text(json.dumps({
         "size": [w, h], "duration": dur,
         "words": [{k: v for k, v in word.items() if not k.startswith("_")} for word in placed]}, indent=1))
+    # text-layer.png: the settled text and logo on transparency, full canvas, for the app's finishing step.
+    # Rendered over black and over white; alpha comes from the difference, colour from the black render.
+    def settled_on(value):
+        f = np.full_like(plate, value)
+        for word in placed:
+            draw(f, word, dur)
+        if logo is not None:
+            blit(f, logo, (w - logo.shape[1]) // 2, 60, 1.0)
+        return f
+    on_black, on_white = settled_on(0.0), settled_on(255.0)
+    alpha = np.clip(1 - (on_white - on_black).mean(axis=2, keepdims=True) / 255.0, 0, 1)
+    rgb = np.where(alpha > 1e-3, on_black / np.maximum(alpha, 1e-3), 0)
+    layer = np.concatenate([np.clip(rgb, 0, 255), alpha * 255], axis=2).astype(np.uint8)
+    Image.fromarray(layer, "RGBA").save(out / "text-layer.png")
+
     Image.fromarray(frame_at(0.0)).save(out / "first.png")
     Image.fromarray(frame_at(dur - 1 / FPS)).save(out / "last.png")
     times = [i * 0.5 for i in range(int(dur / 0.5) + 1) if i * 0.5 < dur]
