@@ -1,0 +1,7 @@
+inputs/
+jobs/
+__pycache__/
+*.pyc
+.DS_Store
+# Run outputs are committed only on claude/run-* branches by the routine, never on main.
+work/
