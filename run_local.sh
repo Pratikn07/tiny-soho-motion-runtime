@@ -14,7 +14,7 @@ cd "$JOB"; start=$(date +%s)
 env -i HOME="$HOME" TERM="${TERM:-xterm}" LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
   PATH="${PYBIN:+$PYBIN:}/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" \
   CLAUDE_CODE_OAUTH_TOKEN="$(cat "$TOKEN_FILE")" \
-  "$(command -v claude)" -p "$PROMPT" --model claude-opus-5-5 --effort high \
+  "$(command -v claude)" -p "$PROMPT" --model claude-opus-5-5 --effort xhigh \
     --tools "Read,Write,Edit,Glob,Bash,Skill,Agent" \
     --allowedTools "Read" "Write" "Edit" "Glob" "Skill" "Agent" "Bash(python3 tools/*)" \
     --permission-mode dontAsk --setting-sources project \

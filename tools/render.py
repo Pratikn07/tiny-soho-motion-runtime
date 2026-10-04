@@ -21,7 +21,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 FONTS = ROOT / "brand" / "fonts"
-LOGO = ROOT / "brand" / "logo" / "tiny-soho-wordmark.png"
+LOGOS = {"wordmark": ROOT / "brand" / "logo" / "tiny-soho-wordmark.png",
+         "lockup": ROOT / "brand" / "logo" / "tiny-soho-lockup.png"}
 FPS = 30
 COCOA, ROSE = (50, 23, 8), (185, 94, 86)
 
@@ -121,8 +122,17 @@ def layout(plan, canvas):
             if width > (x1 - x0) * 1.06:
                 size *= (x1 - x0) * 1.06 / width
         f = font(role, size)
-        space = f.getlength(" ")
-        total = sum(advance(w["text"], role, size) for w in words) + space * (len(words) - 1)
+        track = ROLES[role][2] * size
+
+        def prefix_width(chunk):
+            # Width of the line up to a point, measured the way the whole line would be typeset, so word gaps and
+            # kerning match one-piece setting. Tracked roles add their letter spacing to every character, spaces
+            # included, so word gaps grow with the tracking.
+            if not track:
+                return f.getlength(chunk)
+            return sum(f.getlength(ch) + track for ch in chunk)
+
+        total = prefix_width(text) - (track if track else 0)
         align = line.get("align", "left")
         if "x" in line:
             x = float(line["x"])
@@ -134,13 +144,15 @@ def layout(plan, canvas):
             x = x0
         b = ink_box(text, role, size)
         baseline = float(line["y"]) if "y" in line else (y0 + y1) / 2 - (b[1] + b[3]) / 2
+        pos = 0
         for wi, w in enumerate(words):
-            adv = advance(w["text"], role, size)
+            start = text.index(w["text"], pos)
+            pos = start + len(w["text"])
+            wx = x + prefix_width(text[:start])
             wb = ink_box(w["text"], role, size)
             placed.append({"line": line["id"], "li": li, "wi": wi, "text": w["text"], "rose": w["rose"],
-                           "role": role, "size": size, "x": x, "baseline": baseline,
-                           "box": [x + wb[0], baseline + wb[1], x + wb[2], baseline + wb[3]]})
-            x += adv + space
+                           "role": role, "size": size, "x": wx, "baseline": baseline,
+                           "box": [wx + wb[0], baseline + wb[1], wx + wb[2], baseline + wb[3]]})
     return placed
 
 
@@ -323,8 +335,10 @@ def main():
     for word in placed:
         word["_sprite"] = sprite(word)
     logo = None
-    if plan.get("brand", True):
-        im = Image.open(LOGO).convert("RGBA")
+    brand = plan.get("brand", True)
+    if brand:
+        # true or "wordmark": the name only. "lockup": the name with the heart and rules underneath.
+        im = Image.open(LOGOS["lockup" if brand == "lockup" else "wordmark"]).convert("RGBA")
         im = im.crop(im.getchannel("A").getbbox())
         im = im.resize((270, round(im.height * 270 / im.width)), Image.LANCZOS)
         logo = np.asarray(im).astype(np.float32) / 255.0

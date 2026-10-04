@@ -37,7 +37,7 @@ motion that fits its meaning.
   "concept": "story",
   "hook_line": "l1",
   "duration": 6.0,
-  "brand": true,
+  "brand": "lockup",
   "lines": [
     {"id": "l1", "role": "headline", "box": [104, 205, 1014, 313],
      "runs": [{"text": "You pick my clothes.", "rose": false}]},
@@ -64,8 +64,9 @@ motion that fits its meaning.
 - Optional per line: `size` (px), `x`, `y` (baseline), `align` (`left`, `center`, `right`).
 - `role`: `headline` (big statement lines), `body`, `heading` (short bold labels like "For:"), `display` (tall
   capital recipe or podcast titles), `eyebrow` (spaced capital section labels), `label` (small UI-style tags).
-- `remove_extra`: the old "TINY SOHO" logo, heart and divider at the top. The renderer adds the brand wordmark back
-  when `brand` is true.
+- `remove_extra`: the old "TINY SOHO" logo, heart and divider at the top. The renderer adds the brand logo back.
+- `brand`: `"lockup"` when the original shows the heart and rules under "TINY SOHO", `"wordmark"` (or `true`) when
+  it shows the name only, `false` when the slide has no logo. Match the original.
 - `protect`: the child (face, hair, hands), logos printed on products, phone screens. Cleanup never touches them,
   and text must not sit on them.
 - `motion`: cues. `words: [a, b]` selects words a to b-1 in that line (0-based); leave it out for the whole line.
