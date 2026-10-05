@@ -37,8 +37,8 @@ ROLES = {
     "eyebrow": ("SourceSerif4[opsz,wght].ttf", [600, 20], 0.3, True),
     "label": ("DMSans[opsz,wght].ttf", [14, 600], 0.14, True),
 }
-ENTRANCES = {"none", "fade", "rise", "snap", "slow", "spring", "stamp", "pop", "slide-left", "slide-right"}
-ACCENTS = {"droop", "pulse", "nudge"}
+ENTRANCES = {"none", "fade", "rise", "snap", "slow", "spring", "stamp", "pop", "slide-left", "slide-right", "drop"}
+ACCENTS = {"droop", "pulse", "nudge", "wiggle", "hop", "tilt"}
 
 
 def font(role, size):
@@ -67,6 +67,18 @@ def in_cubic(t):
 
 def in_out_sine(t):
     return 0.5 - 0.5 * math.cos(math.pi * clamp01(t))
+
+
+def out_bounce(t):
+    """Falls and bounces twice, settling at 1."""
+    t = clamp01(t)
+    if t < 0.55:
+        return (t / 0.55) ** 2
+    if t < 0.82:
+        u = (t - 0.685) / 0.135
+        return 1 - 0.12 * (1 - u * u)
+    u = (t - 0.91) / 0.09
+    return 1 - 0.035 * (1 - min(1.0, u * u))
 
 
 def out_back(t, s=2.2):
@@ -231,6 +243,9 @@ def enter_state(e, t):
         return clamp01(p * 5), 0, 0, s, -6 * (1 - in_cubic(q)), 0
     if e["effect"] == "pop":
         return clamp01(p * 3), 0, 0, 0.9 + 0.1 * out_back(p, 1.4), 0, 0
+    if e["effect"] == "drop":
+        # Falls in from above and bounces as it lands, like a toy dropped on the floor.
+        return clamp01(p * 4), 0, -(amt or 60) * (1 - out_bounce(p)), 1, 0, 0
     if e["effect"] in ("slide-left", "slide-right"):
         sign = -1 if e["effect"] == "slide-left" else 1
         return k, sign * (amt or 28) * (1 - k), 0, 1, 0, 3.0 * max(0, 1 - p / 0.6)
@@ -258,6 +273,17 @@ def accent_offset(w, t):
             scale *= 1 + 0.14 * amt * math.sin(math.pi * p)
         elif a["effect"] == "nudge" and p < 1:
             dx += 10 * amt * math.sin(math.pi * p) * math.exp(-p * 2)
+        elif a["effect"] == "wiggle" and p < 1:
+            # A quick no-no shake that dies away: protest, refusal, a tiny tantrum.
+            shake = math.sin(p * 4 * math.pi) * (1 - p)
+            rot += 11 * amt * shake
+            dx += 4 * amt * shake
+        elif a["effect"] == "hop" and p < 1:
+            # One happy bounce straight up and back down.
+            dy -= 16 * amt * math.sin(math.pi * p)
+        elif a["effect"] == "tilt":
+            # Leans over and stays leaning: confusion, a question, "wait, what?".
+            rot += 6 * amt * out_back(min(p, 1.0), 1.6)
     return dx, dy, scale, rot
 
 
@@ -299,7 +325,11 @@ def draw(canvas, w, t):
 
 
 def camera(frame, plan, t, dur):
+    """The photo stays still: the video model animates the scene later. A camera move only when a plan asks for one
+    with `"camera": {"allow": true, ...}`, which the skill does not do."""
     cam = plan.get("camera") or {}
+    if not cam.get("allow"):
+        return frame
     s0, s1 = float(cam.get("from", 1.0)), float(cam.get("to", 1.03))
     fx, fy = cam.get("focus", [0.5, 0.5])
     h, w = frame.shape[:2]

@@ -20,7 +20,7 @@ It runs two ways:
 | `tools/inspect_slide.py` | Coordinate grid and OCR hints for a slide |
 | `tools/zoom.py` | Enlarged crop with a 10 px grid |
 | `tools/clean.py` | Removes baked-in text inside the plan's line boxes, never inside protected boxes |
-| `tools/render.py` | Brand type plus word-level motion (rise, snap, slow, spring, stamp, pop, slides, droop, pulse, nudge) over the text-free image. Outputs stills, exact frames or an MP4 |
+| `tools/render.py` | Brand type plus word-level motion (rise, snap, slow, spring, stamp, pop, slides, drop; accents droop, pulse, nudge, wiggle, hop, tilt) over the still, text-free image. The photo never moves: the video model animates the scene. Outputs stills, a per-cue motion sheet, exact frames or an MP4 |
 | `tools/check.py` | Automatic checks: edges, overlaps, protected areas, hook on frame 0, timing |
 | `tools/jobio.py` | App jobs: validates the payload, downloads slides and uploads outputs, only to hosts in `runtime.json` |
 | `brand/` | Brand fonts (SIL Open Font License) and the wordmark |
