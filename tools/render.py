@@ -4,7 +4,8 @@
     python3 tools/render.py work/slide-03/plan.json --stills    # frame sheet + key stills only (seconds)
     python3 tools/render.py work/slide-03/plan.json --frames 1.6,1.75,1.9   # exact frames, e.g. mid-motion
 
-Writes into work/<name>/: preview.mp4, frames.jpg (a still every 0.5 s), first.png (frame 0), last.png and
+Writes into work/<name>/: preview.mp4, frames.jpg (a still every 0.5 s), motion.jpg (five frames across every
+animated cue, cropped to its words), first.png (frame 0), last.png and
 layout.json (where every word landed, used by tools/check.py) and text-layer.png (the settled text and logo on
 transparency, for the app's finishing step).
 """
@@ -318,6 +319,32 @@ def ffmpeg_bin():
     return imageio_ffmpeg.get_ffmpeg_exe()
 
 
+def motion_events(plan, placed):
+    """Every cue that moves something, with the words it touches and when it starts and settles."""
+    by_line = {}
+    for w in placed:
+        by_line.setdefault(w["line"], []).append(w)
+    events = []
+    for cue in plan.get("motion", []):
+        if cue["effect"] == "none":
+            continue
+        words = by_line.get(cue["line"], [])
+        if "words" in cue and cue["words"] != "all":
+            a, b = cue["words"]
+            words = words[a:b]
+        if not words:
+            continue
+        start = float(cue.get("at", 0))
+        default = 0.55 if cue["effect"] in ACCENTS else 0.45
+        end = start + float(cue.get("dur", default)) + float(cue.get("stagger", 0)) * (len(words) - 1)
+        box = [min(w["box"][0] for w in words), min(w["box"][1] for w in words),
+               max(w["box"][2] for w in words), max(w["box"][3] for w in words)]
+        label = " ".join(w["text"] for w in words)
+        events.append({"label": f'{cue["line"]} "{label[:40]}" {cue["effect"]} {start:.2f}-{end:.2f}s',
+                       "start": start, "end": end, "box": box})
+    return events
+
+
 def main():
     args = sys.argv[1:]
     plan_file = Path(args[0])
@@ -394,8 +421,45 @@ def main():
         sheet.paste(im, (x, y + 18))
         dd.text((x + 4, y + 3), f"{t:.1f}s", fill="black")
     sheet.save(out / "frames.jpg", quality=88)
+
+    # motion.jpg: one row per cue, five frames from just before it starts to just after it settles, cropped to the
+    # words it moves (with room around them for collisions). This shows what the 0.5 s sheet skips over.
+    events = motion_events(plan, placed)[:14]
+    if events:
+        cell_h, pad, label_h = 150, 70, 20
+        rows = []
+        for ev in events:
+            x0, y0, x1, y1 = ev["box"]
+            # At least 360 px wide, so a single short word still shows its neighbours.
+            grow = max(0, 360 - (x1 - x0 + 2 * pad)) / 2
+            box = (max(0, int(x0 - pad - grow)), max(0, int(y0 - pad)), min(w, int(x1 + pad + grow)), min(h, int(y1 + pad)))
+            span = max(0.05, ev["end"] - ev["start"])
+            # Every effect eases out, so the action is early in the cue: sample densely at the start.
+            ts = ([max(0.0, ev["start"] - 0.04)] + [ev["start"] + span * f for f in (0.08, 0.2, 0.45)]
+                  + [min(dur - 1 / FPS, ev["end"] + 0.06)])
+            crops = []
+            for t in ts:
+                crop = Image.fromarray(frame_at(t)).crop(box)
+                scale = cell_h / crop.height
+                crops.append((t, crop.resize((max(1, int(crop.width * scale)), cell_h), Image.LANCZOS)))
+            rows.append((ev["label"], crops))
+        width = max(sum(c.width for _, c in crops) + 6 * len(crops) for _, crops in rows)
+        msheet = Image.new("RGB", (min(width, 2400), len(rows) * (cell_h + label_h + 8)), "white")
+        dm = ImageDraw.Draw(msheet)
+        for r, (label, crops) in enumerate(rows):
+            y = r * (cell_h + label_h + 8)
+            dm.text((4, y + 3), label, fill="black")
+            x = 0
+            for t, crop in crops:
+                msheet.paste(crop, (x, y + label_h))
+                dm.text((x + 3, y + label_h + 3), f"{t:.2f}s", fill=(200, 0, 0))
+                x += crop.width + 6
+        msheet.save(out / "motion.jpg", quality=88)
+
     result = {"layout": str(out / "layout.json"), "frames": str(out / "frames.jpg"),
               "first": str(out / "first.png"), "last": str(out / "last.png")}
+    if events:
+        result["motion"] = str(out / "motion.jpg")
     if not stills_only:
         mp4 = out / "preview.mp4"
         cmd = [ffmpeg_bin(), "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{w}x{h}",

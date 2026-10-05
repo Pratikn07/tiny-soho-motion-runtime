@@ -22,7 +22,7 @@ hyphens, and the folder exists in this repository.
 1. Run `bash setup.sh`, then copy every `.png` from that fixtures folder into `inputs/`.
 2. Direct every slide as in A4.
 3. Commit only these files from each `work/slide-*/` folder: `plan.json`, `notes.md`, `plate.png`, `text-layer.png`,
-   `clean-check.png`, `frames.jpg`, `first.png`, `last.png`, `preview.mp4`. Commit them to a new branch named
+   `clean-check.png`, `frames.jpg`, `motion.jpg`, `first.png`, `last.png`, `preview.mp4`. Commit them to a new branch named
    `claude/run-<fixture name>-<UTC date and time as YYYYMMDD-HHMM>` and push that branch. Never push to `main`.
 
 If the payload matches neither form, stop and report that, changing nothing.

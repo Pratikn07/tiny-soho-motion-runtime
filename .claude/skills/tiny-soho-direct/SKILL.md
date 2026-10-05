@@ -23,7 +23,7 @@ motion that fits its meaning.
 |---|---|
 | `python3 tools/inspect_slide.py inputs/<slide>.png` | `work/<slide>/grid.png` with a coordinate grid every 50 px, plus `ocr.json` hints. OCR misses pale rose text and invents words from hair, fabric and screens. Trust your eyes. |
 | `python3 tools/clean.py work/<slide>/plan.json` | `plate.png` (text removed) and `clean-check.png` (magenta = repaired pixels, green = protected boxes) |
-| `python3 tools/render.py work/<slide>/plan.json --stills` | `frames.jpg` (every 0.5 s), `first.png`, `last.png`, `layout.json`. Takes seconds. Use it while iterating. |
+| `python3 tools/render.py work/<slide>/plan.json --stills` | `frames.jpg` (every 0.5 s), `motion.jpg` (one row per animated cue: five frames from just before it starts to just after it settles, cropped to its words), `first.png`, `last.png`, `layout.json`. Takes seconds. Use it while iterating. |
 | `python3 tools/render.py work/<slide>/plan.json` | The same, plus `preview.mp4`. Run it once, when the stills are right. |
 | `python3 tools/render.py work/<slide>/plan.json --frames 1.6,1.75` | Exact frames at those times (`frame-1.60.png` …). Use it to inspect motion between the 0.5 s samples, such as a stamp mid-landing or a droop mid-sag. |
 | `python3 tools/zoom.py <image> x0 y0 x1 y1 [--scale 3]` | An enlarged crop with a 10 px grid in source coordinates. Use it to measure line boxes precisely, check a cleanup edge, or inspect a collision. |
@@ -101,7 +101,8 @@ slide, and never on the hook line. A stamp or droop only works if the words earn
    is usually the first headline. Plan timing on the account's rules above.
 3. Run `clean.py`. Open `clean-check.png`. Magenta must cover only lettering. If any magenta touches the child,
    props or furniture, fix the boxes and `protect`, then run it again. Open `plate.png` and confirm no letters remain.
-4. Run `render.py --stills` and `check.py`. Open `first.png`, `frames.jpg` and `last.png`. Score each 1–10:
+4. Run `render.py --stills` and `check.py`. Open `first.png`, `frames.jpg`, `motion.jpg` and `last.png`. Judge
+   motion from `motion.jpg`: it shows what happens between the 0.5 s samples. Score each 1–10:
    - **Readable**: hook clear on frame 0; every line legible at phone size; nothing sits on the child.
    - **Faithful**: words, punctuation and rose emphasis match the original exactly.
    - **Meaningful motion**: each effect fits its words; the gags land; nothing distracts.
@@ -112,7 +113,8 @@ slide, and never on the hook line. A stamp or droop only works if the words earn
    when everything scores 8 or higher.
 6. Independent review. Authors go easy on their own work, so get a second opinion that has not seen the plan.
    If you can start a subagent, give it only `inputs/<slide>.png`, `work/<slide>/first.png`,
-   `work/<slide>/frames.jpg` and `work/<slide>/last.png`. Ask it to list every difference in wording, punctuation
+   `work/<slide>/frames.jpg`, `work/<slide>/motion.jpg` and `work/<slide>/last.png`. Tell it that `motion.jpg` is
+   the place to judge motion: each row is one cue, left to right through time. Ask it to list every difference in wording, punctuation
    or emphasis from the original, every collision or crowding, anything sitting on the child, and anything that
    reads badly, and to score the four criteria. If you cannot start a subagent, do this review yourself as a cold
    read: the original first, then the frames, as if seeing them for the first time. Fix every real issue it finds,
