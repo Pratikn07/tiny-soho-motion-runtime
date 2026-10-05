@@ -1,0 +1,244 @@
+{
+  "slide": "inputs/slide-01.png",
+  "concept": "story",
+  "hook_line": "l1",
+  "duration": 7.0,
+  "brand": "lockup",
+  "lines": [
+    {
+      "id": "l1",
+      "role": "headline",
+      "box": [
+        102,
+        216,
+        738,
+        287
+      ],
+      "runs": [
+        {
+          "text": "In the car I stare",
+          "rose": false
+        }
+      ],
+      "size": 93
+    },
+    {
+      "id": "l2",
+      "role": "headline",
+      "box": [
+        101,
+        313,
+        730,
+        383
+      ],
+      "runs": [
+        {
+          "text": "out the window.",
+          "rose": true
+        }
+      ],
+      "size": 93
+    },
+    {
+      "id": "l3",
+      "role": "body",
+      "box": [
+        104,
+        457,
+        577,
+        508
+      ],
+      "runs": [
+        {
+          "text": "I’m",
+          "rose": false
+        },
+        {
+          "text": "not",
+          "rose": true
+        },
+        {
+          "text": "ignoring you.",
+          "rose": false
+        }
+      ],
+      "size": 46
+    },
+    {
+      "id": "l4",
+      "role": "body",
+      "box": [
+        104,
+        535,
+        535,
+        587
+      ],
+      "runs": [
+        {
+          "text": "I’m",
+          "rose": false
+        },
+        {
+          "text": "still",
+          "rose": true
+        },
+        {
+          "text": "waking up.",
+          "rose": false
+        }
+      ],
+      "size": 46
+    },
+    {
+      "id": "l5",
+      "role": "body",
+      "box": [
+        103,
+        632,
+        454,
+        686
+      ],
+      "runs": [
+        {
+          "text": "My brain needs",
+          "rose": false
+        }
+      ],
+      "size": 46
+    },
+    {
+      "id": "l6",
+      "role": "body",
+      "box": [
+        103,
+        698,
+        459,
+        748
+      ],
+      "runs": [
+        {
+          "text": "twenty minutes",
+          "rose": true
+        }
+      ],
+      "size": 46
+    },
+    {
+      "id": "l7",
+      "role": "body",
+      "box": [
+        104,
+        765,
+        552,
+        814
+      ],
+      "runs": [
+        {
+          "text": "and you gave me four.",
+          "rose": false
+        }
+      ],
+      "size": 46
+    }
+  ],
+  "remove_extra": [
+    [
+      420,
+      45,
+      700,
+      145
+    ]
+  ],
+  "protect": [
+    {
+      "label": "child head and hair",
+      "box": [
+        590,
+        480,
+        1000,
+        1010
+      ]
+    },
+    {
+      "label": "child body, hands and bunny",
+      "box": [
+        380,
+        980,
+        1122,
+        1402
+      ]
+    }
+  ],
+  "motion": [
+    {
+      "line": "l1",
+      "effect": "none",
+      "at": 0
+    },
+    {
+      "line": "l2",
+      "effect": "none",
+      "at": 0
+    },
+    {
+      "line": "l3",
+      "effect": "rise",
+      "at": 0.3,
+      "dur": 0.45,
+      "stagger": 0.05
+    },
+    {
+      "line": "l4",
+      "effect": "slow",
+      "at": 0.6,
+      "dur": 0.9,
+      "stagger": 0.1
+    },
+    {
+      "line": "l5",
+      "effect": "rise",
+      "at": 0.95,
+      "dur": 0.45,
+      "stagger": 0.05
+    },
+    {
+      "line": "l6",
+      "effect": "rise",
+      "at": 1.08,
+      "dur": 0.45,
+      "stagger": 0.06
+    },
+    {
+      "line": "l7",
+      "words": [
+        0,
+        4
+      ],
+      "effect": "rise",
+      "at": 1.15,
+      "dur": 0.45,
+      "stagger": 0.04
+    },
+    {
+      "line": "l7",
+      "words": [
+        4,
+        5
+      ],
+      "effect": "stamp",
+      "at": 1.55,
+      "dur": 0.36,
+      "amount": 1.12
+    }
+  ],
+  "camera": {
+    "from": 1.0,
+    "to": 1.03,
+    "focus": [
+      0.3,
+      0.15
+    ]
+  },
+  "scene_prompt": "The sleepy toddler in the car seat keeps gazing out the window, blinks slowly once and lets her head settle a little deeper into the seat. Warm morning sunlight drifts softly across her face and a few loose curls stir.",
+  "scene_avoid": "No camera moves. She must not turn toward the camera, talk, or move into the upper-left text area. No new objects or people."
+}
