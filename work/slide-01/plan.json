@@ -1,0 +1,259 @@
+{
+  "slide": "inputs/slide-01.png",
+  "concept": "story",
+  "hook_line": "l1",
+  "duration": 7.0,
+  "brand": "lockup",
+  "lines": [
+    {
+      "id": "l1",
+      "role": "headline",
+      "box": [
+        102,
+        216,
+        739,
+        288
+      ],
+      "runs": [
+        {
+          "text": "In the car I stare",
+          "rose": false
+        }
+      ],
+      "size": 95
+    },
+    {
+      "id": "l2",
+      "role": "headline",
+      "box": [
+        101,
+        313,
+        731,
+        384
+      ],
+      "runs": [
+        {
+          "text": "out the window.",
+          "rose": true
+        }
+      ],
+      "size": 95
+    },
+    {
+      "id": "l3",
+      "role": "body",
+      "box": [
+        104,
+        457,
+        578,
+        509
+      ],
+      "runs": [
+        {
+          "text": "I’m",
+          "rose": false
+        },
+        {
+          "text": "not",
+          "rose": true
+        },
+        {
+          "text": "ignoring you.",
+          "rose": false
+        }
+      ],
+      "size": 47
+    },
+    {
+      "id": "l4",
+      "role": "body",
+      "box": [
+        104,
+        535,
+        536,
+        588
+      ],
+      "runs": [
+        {
+          "text": "I’m",
+          "rose": false
+        },
+        {
+          "text": "still",
+          "rose": true
+        },
+        {
+          "text": "waking up.",
+          "rose": false
+        }
+      ],
+      "size": 47
+    },
+    {
+      "id": "l5",
+      "role": "body",
+      "box": [
+        103,
+        632,
+        455,
+        687
+      ],
+      "runs": [
+        {
+          "text": "My brain needs",
+          "rose": false
+        }
+      ],
+      "size": 47
+    },
+    {
+      "id": "l6",
+      "role": "body",
+      "box": [
+        103,
+        698,
+        460,
+        749
+      ],
+      "runs": [
+        {
+          "text": "twenty minutes",
+          "rose": true
+        }
+      ],
+      "size": 47
+    },
+    {
+      "id": "l7",
+      "role": "body",
+      "box": [
+        104,
+        765,
+        553,
+        815
+      ],
+      "runs": [
+        {
+          "text": "and you gave me four.",
+          "rose": false
+        }
+      ],
+      "size": 47
+    }
+  ],
+  "remove_extra": [
+    [
+      425,
+      50,
+      697,
+      140
+    ]
+  ],
+  "protect": [
+    {
+      "label": "child",
+      "box": [
+        588,
+        505,
+        1122,
+        1402
+      ]
+    }
+  ],
+  "motion": [
+    {
+      "line": "l1",
+      "effect": "none",
+      "at": 0
+    },
+    {
+      "line": "l2",
+      "effect": "none",
+      "at": 0
+    },
+    {
+      "line": "l3",
+      "words": [
+        0,
+        1
+      ],
+      "effect": "rise",
+      "at": 0.3,
+      "dur": 0.4
+    },
+    {
+      "line": "l3",
+      "words": [
+        1,
+        2
+      ],
+      "effect": "snap",
+      "at": 0.42,
+      "dur": 0.3
+    },
+    {
+      "line": "l3",
+      "words": [
+        2,
+        4
+      ],
+      "effect": "rise",
+      "at": 0.5,
+      "dur": 0.4,
+      "stagger": 0.05
+    },
+    {
+      "line": "l4",
+      "effect": "slow",
+      "at": 0.7,
+      "dur": 0.5,
+      "stagger": 0.06
+    },
+    {
+      "line": "l5",
+      "effect": "rise",
+      "at": 0.95,
+      "dur": 0.35,
+      "stagger": 0.04
+    },
+    {
+      "line": "l6",
+      "effect": "rise",
+      "at": 1.18,
+      "dur": 0.38,
+      "stagger": 0.03
+    },
+    {
+      "line": "l7",
+      "words": [
+        0,
+        4
+      ],
+      "effect": "rise",
+      "at": 1.3,
+      "dur": 0.35,
+      "stagger": 0.04
+    },
+    {
+      "line": "l7",
+      "words": [
+        4,
+        5
+      ],
+      "effect": "stamp",
+      "at": 1.72,
+      "dur": 0.26,
+      "amount": 1.15
+    }
+  ],
+  "camera": {
+    "from": 1.0,
+    "to": 1.03,
+    "focus": [
+      0.62,
+      0.2
+    ]
+  },
+  "scene_prompt": "A sleepy toddler in a car seat keeps gazing out the side window in warm morning light. She blinks slowly, her eyelids heavy, and her chest rises with a slow breath; a few loose strands of her messy bun stir faintly. The landscape outside the window drifts by softly out of focus.",
+  "scene_avoid": "No camera moves, no zoom. She stays seated facing the window; her head, hair and hands must not move left or up into the text area on the upper left. No new people or objects, no talking, no sudden movements."
+}
