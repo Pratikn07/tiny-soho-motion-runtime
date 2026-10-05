@@ -1,0 +1,234 @@
+{
+ "slide": "inputs/slide-01.png",
+ "concept": "story",
+ "hook_line": "l1",
+ "duration": 7.0,
+ "brand": "lockup",
+ "lines": [
+  {
+   "id": "l1",
+   "role": "headline",
+   "box": [
+    101,
+    215,
+    739,
+    287
+   ],
+   "runs": [
+    {
+     "text": "In the car I stare",
+     "rose": false
+    }
+   ],
+   "size": 90.5
+  },
+  {
+   "id": "l2",
+   "role": "headline",
+   "box": [
+    101,
+    311,
+    732,
+    385
+   ],
+   "runs": [
+    {
+     "text": "out the window.",
+     "rose": true
+    }
+   ],
+   "size": 90.5
+  },
+  {
+   "id": "l3",
+   "role": "body",
+   "box": [
+    102,
+    457,
+    579,
+    510
+   ],
+   "runs": [
+    {
+     "text": "I’m",
+     "rose": false
+    },
+    {
+     "text": "not",
+     "rose": true
+    },
+    {
+     "text": "ignoring you.",
+     "rose": false
+    }
+   ],
+   "size": 49.1
+  },
+  {
+   "id": "l4",
+   "role": "body",
+   "box": [
+    102,
+    535,
+    538,
+    588
+   ],
+   "runs": [
+    {
+     "text": "I’m",
+     "rose": false
+    },
+    {
+     "text": "still",
+     "rose": true
+    },
+    {
+     "text": "waking up.",
+     "rose": false
+    }
+   ],
+   "size": 49.4
+  },
+  {
+   "id": "l5",
+   "role": "body",
+   "box": [
+    102,
+    632,
+    453,
+    686
+   ],
+   "runs": [
+    {
+     "text": "My brain needs",
+     "rose": false
+    }
+   ],
+   "size": 48.5
+  },
+  {
+   "id": "l6",
+   "role": "body",
+   "box": [
+    102,
+    698,
+    460,
+    748
+   ],
+   "runs": [
+    {
+     "text": "twenty minutes",
+     "rose": true
+    }
+   ],
+   "size": 48.6
+  },
+  {
+   "id": "l7",
+   "role": "body",
+   "box": [
+    102,
+    767,
+    553,
+    815
+   ],
+   "runs": [
+    {
+     "text": "and you gave me four.",
+     "rose": false
+    }
+   ],
+   "size": 44.7
+  }
+ ],
+ "remove_extra": [
+  [
+   420,
+   40,
+   705,
+   145
+  ]
+ ],
+ "protect": [
+  {
+   "label": "child",
+   "box": [
+    585,
+    490,
+    1015,
+    1300
+   ]
+  }
+ ],
+ "motion": [
+  {
+   "line": "l1",
+   "effect": "none",
+   "at": 0
+  },
+  {
+   "line": "l2",
+   "effect": "none",
+   "at": 0
+  },
+  {
+   "line": "l3",
+   "effect": "slow",
+   "at": 0.2,
+   "dur": 0.45,
+   "stagger": 0.03
+  },
+  {
+   "line": "l4",
+   "effect": "slow",
+   "at": 0.5,
+   "dur": 0.45,
+   "stagger": 0.03
+  },
+  {
+   "line": "l5",
+   "effect": "slow",
+   "at": 0.85,
+   "dur": 0.45,
+   "stagger": 0.03
+  },
+  {
+   "line": "l6",
+   "effect": "slow",
+   "at": 1.08,
+   "dur": 0.45,
+   "stagger": 0.03
+  },
+  {
+   "line": "l7",
+   "words": [
+    0,
+    4
+   ],
+   "effect": "slow",
+   "at": 1.28,
+   "dur": 0.4,
+   "stagger": 0.03
+  },
+  {
+   "line": "l7",
+   "words": [
+    4,
+    5
+   ],
+   "effect": "snap",
+   "at": 1.68,
+   "dur": 0.3
+  }
+ ],
+ "camera": {
+  "from": 1.0,
+  "to": 1.03,
+  "focus": [
+   0.4,
+   0.3
+  ]
+ },
+ "scene_prompt": "She stays slumped in the car seat, gazing out the window. Her eyelids blink slowly and heavily, a few loose curls lift in the warm morning light, and she lets out a small sleepy breath.",
+ "scene_avoid": "No camera moves. She must not turn toward the camera or lean into the upper-left text area. Keep the bunny, blanket and harness still. No new objects or people."
+}
