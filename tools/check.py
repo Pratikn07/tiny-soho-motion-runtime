@@ -6,6 +6,7 @@ Prints JSON with `pass` and a list of `problems`. Passing these checks is necess
 to look at frames.jpg, first.png and last.png.
 """
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -18,6 +19,40 @@ def overlap(a, b):
 
 def area(a):
     return max(0, a[2] - a[0]) * max(0, a[3] - a[1])
+
+
+def peak_boxes(words):
+    """For each word that grows or turns mid-motion, its box at the biggest moment (matching render.py's effects):
+    (word, time, box, what it does). Used to catch a stamp or wiggle running into its neighbour."""
+    out = []
+    for wd in words:
+        x0, y0, x1, y1 = wd["box"]
+        cx, cy, hw, hh = (x0 + x1) / 2, (y0 + y1) / 2, (x1 - x0) / 2, (y1 - y0) / 2
+        moves = []
+        e = wd["enter"]
+        if e["effect"] == "stamp":
+            moves.append((e["at"], e.get("amount") or 1.35, 6, "grows as it stamps"))
+        if e["effect"] == "drop":
+            # Fully visible from a quarter of the way in, still about 80% of its fall height up.
+            lift = 0.8 * (e.get("amount") or 60)
+            out.append((wd, e["at"] + e["dur"] * 0.25, [x0, y0 - lift, x1, y1 - lift], "falls through"))
+        for a in wd["accents"]:
+            amt = a.get("amount") or 1.0
+            if a["effect"] == "pulse":
+                moves.append((a["at"] + a["dur"] / 2, 1 + 0.14 * amt, 0, "swells"))
+            elif a["effect"] == "wiggle":
+                moves.append((a["at"] + a["dur"] / 8, 1.0, 11 * amt * 0.85, "tilts as it wiggles"))
+            elif a["effect"] == "tilt":
+                moves.append((a["at"] + a["dur"], 1.0, 6 * amt * 1.1, "leans"))
+            elif a["effect"] == "droop":
+                moves.append((a["at"] + a["dur"], 1.0, (7 + 4 * (wd["wi"] % 2)) * amt, "sags"))
+        for t, scale, degrees, why in moves:
+            r = math.radians(degrees)
+            w2 = scale * (hw * abs(math.cos(r)) + hh * abs(math.sin(r)))
+            h2 = scale * (hw * abs(math.sin(r)) + hh * abs(math.cos(r)))
+            if w2 > hw * 1.02 or h2 > hh * 1.02:
+                out.append((wd, t, [cx - w2, cy - h2, cx + w2, cy + h2], why))
+    return out
 
 
 def main(plan_path):
@@ -60,8 +95,25 @@ def main(plan_path):
     if dur - last_in < 2.5:
         problems.append(f"only {dur - last_in:.2f}s of hold after the last text; keep at least 2.5 s")
     accents = [a for wd in words for a in wd["accents"]]
-    if len({(wd['line']) for wd in words if wd['accents']}) > 2:
-        problems.append("accents on more than 2 lines; keep gags to one or two phrases")
+    if len({(wd['line']) for wd in words if wd['accents']}) > 3:
+        problems.append("accents on more than 3 lines; keep it to the signature moment, rose words and the hook")
+    for wd in words:
+        for a in wd["accents"]:
+            if a["at"] < wd["enter"]["at"] + wd["enter"]["dur"] - 1e-6:
+                problems.append(f"'{wd['text']}' ({wd['line']}) starts its {a['effect']} before it has entered")
+            if a["at"] + a["dur"] > 3.2 + 1e-6:
+                problems.append(f"'{wd['text']}' ({wd['line']}) {a['effect']} settles at {a['at'] + a['dur']:.2f}s; "
+                                f"settle accents by 3.2 s")
+    for wd, peak, grown, why in peak_boxes(words):
+        for other in words:
+            if other is wd or other["enter"]["at"] > peak:
+                continue
+            if overlap(grown, other["box"]) > 0.03 * area(other["box"]):
+                problems.append(f"'{wd['text']}' ({wd['line']}) {why} into '{other['text']}' ({other['line']}) "
+                                f"at about {peak:.2f}s")
+    last_accent = max((a["at"] + a["dur"] for a in accents), default=0)
+    if accents and dur - last_accent < 2.0:
+        problems.append(f"only {dur - last_accent:.2f}s of calm hold after the last accent; keep at least 2 s")
     print(json.dumps({"pass": not problems, "problems": problems, "last_text_in_s": round(last_in, 2),
                       "accent_count": len(accents)}, indent=1))
 

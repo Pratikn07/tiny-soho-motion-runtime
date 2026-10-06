@@ -17,6 +17,7 @@ It runs two ways:
 | Path | What |
 |---|---|
 | `.claude/skills/tiny-soho-direct/SKILL.md` | The brief, the plan format, the effect menu and the critique procedure |
+| `.claude/agents/slide-reviewer.md` | The independent reviewer (step 6): sees only the original and the rendered frames, read-only |
 | `tools/inspect_slide.py` | Coordinate grid and OCR hints for a slide |
 | `tools/zoom.py` | Enlarged crop with a 10 px grid |
 | `tools/clean.py` | Removes baked-in text inside the plan's line boxes, never inside protected boxes |

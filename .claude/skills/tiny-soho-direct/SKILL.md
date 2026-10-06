@@ -76,7 +76,7 @@ played over that video. Never move, zoom or pan the photo.
 ## Effect menu (pick, do not invent)
 
 Entrances:
-- `none`: there from frame 0. Always use this for the hook line.
+- `none`: there from frame 0. Always the hook line's entrance (the hook may still take an accent later; see Voice).
 - `rise`: soft fade and lift with a focus-in. The default for supporting lines.
 - `slow`: gentler, longer rise. For tender or sad lines.
 - `snap`: quick and firm. For rushed, frustrated or urgent beats.
@@ -105,14 +105,21 @@ The slides are written in a toddler's voice: sleepy, stubborn, dramatic, funny, 
 past polished ads; they stop for something that feels like their own child. Let the type act like the child would.
 
 - **One signature moment per slide.** Find the word or phrase that carries the joke or the feeling and give it the
-  move a parent will smile at: a `wiggle` on a refusal, a `droop` on a disaster, a `drop` on the punchline, a `hop`
-  when she's fine again. Everything else stays quiet so that moment lands.
+  biggest move, the one a parent will smile at: a `wiggle` on a refusal, a `droop` on a disaster, a `drop` on the
+  punchline, a `hop` when she's fine again.
+- **The rose words act too.** Rose (pink) words are the designer's emphasis. Give each rose phrase a small accent that
+  matches what it means: `pulse` for warmth, `nudge` for a contradiction, `wiggle` for a refusal, `hop` for delight,
+  `tilt` for a question or confusion. Keep these smaller than the signature moment (`amount` about 0.6–0.8).
+- **The hook gets a gesture too.** The hook is on screen from frame 0 and never enters with motion, but once
+  everything has landed (from about 2.0 s) it may take one accent on its key word, such as a `hop` on "I'm 2," or a
+  `tilt` on a question. That gives the held part of the clip life without costing the first-second read.
 - **Timing is the joke.** Leave a short beat (0.2–0.4 s) before the signature moment, after the words around it have
-  settled.
+  settled. Never fire two accents at once: space them at least 0.3 s apart so each one reads.
 - **Match the mood of the line.** Sleepy lines `slow`; rushed or bossy lines `snap`; happy lines `spring` or `hop`;
   sad ones `slow` or `droop`. Parent-voice lines (advice, reassurance) stay calm: `rise` or `fade`.
-- **Never at the cost of reading.** The hook line has no motion at all. At most two accented phrases per slide.
-  Every word must be sharp and still by 2.0 s, except an accent that settles by 2.5 s.
+- **Never at the cost of reading.** At most three accented phrases per slide, including the hook's. Every word must
+  be in and sharp by 2.0 s; accents start after their word has entered and settle by 3.2 s, leaving at least 2 s of
+  calm hold at the end. An accent never pushes a word into another line, an edge or the child.
 - Recipes, tips and recommendations are calmer than stories: tidy `pop` and `rise`, one small accent at most.
 
 ## Budget
@@ -146,12 +153,11 @@ child. Do not chase a 9 on a line that already reads cleanly.
 5. If `check.py` fails or any score is below 8, change the plan and repeat step 4. Stop at the mode's round limit (see Budget), or sooner
    when everything scores 8 or higher.
 6. Independent review. Authors go easy on their own work, so get a second opinion that has not seen the plan.
-   If you can start a subagent, give it only `inputs/<slide>.png`, `work/<slide>/first.png`,
-   `work/<slide>/frames.jpg`, `work/<slide>/motion.jpg` and `work/<slide>/last.png`. Tell it that `motion.jpg` is
-   the place to judge motion: each row is one cue, left to right through time. Ask it to list every difference in wording, punctuation
-   or emphasis from the original, every collision or crowding, anything sitting on the child, and anything that
-   reads badly, and to score the four criteria. If you cannot start a subagent, do this review yourself as a cold
-   read: the original first, then the frames, as if seeing them for the first time. Fix every real issue it finds,
+   Start the `slide-reviewer` subagent and give it only the paths `inputs/<slide>.png`, `work/<slide>/first.png`,
+   `work/<slide>/frames.jpg`, `work/<slide>/motion.jpg` and `work/<slide>/last.png`. It lists every difference in
+   wording, punctuation or emphasis from the original, every collision or crowding, anything sitting on the child,
+   and anything that reads badly, and scores the four criteria. If you cannot start a subagent, do this review
+   yourself as a cold read: the original first, then the frames, as if seeing them for the first time. Fix every real issue it finds,
    then repeat step 4.
 7. Render the full clip (`render.py` without `--stills`) and run `check.py` once more. The full render also writes
    `text-layer.png`, the settled text on transparency, which the app needs.
