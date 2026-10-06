@@ -1,6 +1,7 @@
 ---
 name: tiny-soho-direct
 description: Turn finished Tiny Soho Instagram slides (text baked in) into short branded reel clips. Reads each slide, removes the text, re-sets it in brand type with tested motion, critiques its own frames and fixes them. Use for any job in inputs/.
+effort: high
 ---
 
 # Tiny Soho slide director
