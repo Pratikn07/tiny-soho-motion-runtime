@@ -384,6 +384,7 @@ def main():
     out = plan_file.parent
     plate = cv2.cvtColor(cv2.imread(str(out / "plate.png")), cv2.COLOR_BGR2RGB).astype(np.float32)
     h, w = plate.shape[:2]
+    source_size = (w, h)  # text-layer.png must match plate.png, which keeps the slide's own size.
     if w % 2 or h % 2:
         plate = cv2.resize(plate, (w // 2 * 2, h // 2 * 2))
         h, w = plate.shape[:2]
@@ -435,7 +436,10 @@ def main():
     alpha = np.clip(1 - (on_white - on_black).mean(axis=2, keepdims=True) / 255.0, 0, 1)
     rgb = np.where(alpha > 1e-3, on_black / np.maximum(alpha, 1e-3), 0)
     layer = np.concatenate([np.clip(rgb, 0, 255), alpha * 255], axis=2).astype(np.uint8)
-    Image.fromarray(layer, "RGBA").save(out / "text-layer.png")
+    text_layer = Image.fromarray(layer, "RGBA")
+    if text_layer.size != source_size:  # Odd-sized slide: the video frames were trimmed to even, the layer is not.
+        text_layer = text_layer.resize(source_size, Image.LANCZOS)
+    text_layer.save(out / "text-layer.png")
 
     Image.fromarray(frame_at(0.0)).save(out / "first.png")
     Image.fromarray(frame_at(dur - 1 / FPS)).save(out / "last.png")
