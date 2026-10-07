@@ -21,6 +21,8 @@ Report, as short lists:
 2. Every collision, crowding or text near an edge, in any frame.
 3. Anything sitting on or touching the child, their hair or hands, or other important objects.
 4. Anything that reads badly at phone size, or motion that distracts from reading.
+5. Anything that feels playful, bouncy, cartoonish or childish in motion. Tiny Soho is a premium brand: type
+   should move calmly and precisely, like an editorial layout.
 
 Then score 1 to 10, with one line of reasons each: **Readable**, **Faithful**, **Meaningful motion**, **Polish**.
 Be strict. A clean read with nothing to report is fine, but say what you checked.

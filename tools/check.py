@@ -21,6 +21,10 @@ def area(a):
     return max(0, a[2] - a[0]) * max(0, a[3] - a[1])
 
 
+PREMIUM = {"none", "fade", "rise", "slow", "slide-left", "slide-right"}
+LIFT_LIMIT = {"rise": 30, "slow": 30, "slide-left": 32, "slide-right": 32}
+
+
 def peak_boxes(words):
     """For each word that grows or turns mid-motion, its box at the biggest moment (matching render.py's effects):
     (word, time, box, what it does). Used to catch a stamp or wiggle running into its neighbour."""
@@ -94,6 +98,13 @@ def main(plan_path):
         problems.append(f"last text lands at {last_in:.2f}s; keep all text in by 2.0 s")
     if dur - last_in < 2.5:
         problems.append(f"only {dur - last_in:.2f}s of hold after the last text; keep at least 2.5 s")
+    for cue in plan.get("motion", []):
+        if cue["effect"] not in PREMIUM:
+            problems.append(f"{cue['line']}: '{cue['effect']}' is not in the premium menu (none, fade, rise, slow, "
+                            f"slide-left, slide-right); no accents, bounces or jolts")
+        elif cue.get("amount") is not None and abs(cue["amount"]) > LIFT_LIMIT.get(cue["effect"], 0) and cue["effect"] != "fade":
+            problems.append(f"{cue['line']}: {cue['effect']} amount {cue['amount']} is too big; keep it within "
+                            f"{LIFT_LIMIT[cue['effect']]} px")
     accents = [a for wd in words for a in wd["accents"]]
     if len({(wd['line']) for wd in words if wd['accents']}) > 3:
         problems.append("accents on more than 3 lines; keep it to the signature moment, rose words and the hook")

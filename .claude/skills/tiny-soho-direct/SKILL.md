@@ -27,7 +27,7 @@ played over that video. Never move, zoom or pan the photo.
 | `python3 tools/clean.py work/<slide>/plan.json` | `plate.png` (text removed) and `clean-check.png` (magenta = repaired pixels, green = protected boxes) |
 | `python3 tools/render.py work/<slide>/plan.json --stills` | `frames.jpg` (every 0.5 s), `motion.jpg` (one row per animated cue: five frames from just before it starts to just after it settles, cropped to its words), `first.png`, `last.png`, `layout.json`. Takes seconds. Use it while iterating. |
 | `python3 tools/render.py work/<slide>/plan.json` | The same, plus `preview.mp4`. Run it once, when the stills are right. |
-| `python3 tools/render.py work/<slide>/plan.json --frames 1.6,1.75` | Exact frames at those times (`frame-1.60.png` …). Use it to inspect motion between the 0.5 s samples, such as a stamp mid-landing or a droop mid-sag. |
+| `python3 tools/render.py work/<slide>/plan.json --frames 1.6,1.75` | Exact frames at those times (`frame-1.60.png` …). Use it to inspect motion between the 0.5 s samples, such as a slide or a rise mid-way. |
 | `python3 tools/zoom.py <image> x0 y0 x1 y1 [--scale 3]` | An enlarged crop with a 10 px grid in source coordinates. Use it to measure line boxes precisely, check a cleanup edge, or inspect a collision. |
 | `python3 tools/check.py work/<slide>/plan.json` | Automatic checks: edges, overlaps, protected areas, hook on frame 0, timing |
 
@@ -50,8 +50,8 @@ played over that video. Never move, zoom or pan the photo.
   "protect": [{"label": "child", "box": [560, 640, 1000, 1402]}],
   "motion": [
     {"line": "l1", "effect": "none", "at": 0},
-    {"line": "l2", "effect": "rise", "at": 0.5, "dur": 0.45, "stagger": 0.05},
-    {"line": "l2", "words": [1, 3], "effect": "droop", "at": 1.4}
+    {"line": "l2", "words": [0, 1], "effect": "rise", "at": 0.5, "dur": 0.5},
+    {"line": "l2", "words": [1, 3], "effect": "slow", "at": 1.2, "dur": 0.7}
   ],
   "scene_prompt": "She lifts one sleeve of the dinosaur shirt out of the basket and frowns at it.",
   "scene_avoid": "No camera moves. She must not move into the upper-left text area."
@@ -75,52 +75,38 @@ played over that video. Never move, zoom or pan the photo.
 
 ## Effect menu (pick, do not invent)
 
+Tiny Soho is a premium brand. Type moves the way it would in a high-end lifestyle or fashion film: calm, precise,
+eased. `check.py` rejects anything outside this menu.
+
 Entrances:
-- `none`: there from frame 0. Always the hook line's entrance (the hook may still take an accent later; see Voice).
-- `rise`: soft fade and lift with a focus-in. The default for supporting lines.
-- `slow`: gentler, longer rise. For tender or sad lines.
-- `snap`: quick and firm. For rushed, frustrated or urgent beats.
-- `spring`: bouncy overshoot. Joy and delight only.
-- `stamp`: lands big, then settles with a jolt. One or two emphatic words ("only vote", "four.").
-- `pop`: small scale-up. Short labels such as ingredient names.
-- `slide-left` / `slide-right`: paired panels that answer each other ("I swapped:" / "For:").
-- `fade`: opacity only. Thin labels.
+- `none`: there from frame 0. Always the hook line's entrance.
+- `rise`: soft fade and short lift with a focus-in. The default for supporting lines.
+- `slow`: a gentler, longer rise. For the line or rose phrase that carries the feeling, and for tender lines.
+- `fade`: opacity only. Labels, small print, list items.
+- `slide-left` / `slide-right`: a short, soft slide. Only for paired panels that answer each other ("I swapped:" /
+  "For:").
 
-Accents (after a word has entered):
-- `droop`: the words sag and tilt, like bad news. Disappointment, "worst thing ever".
-- `pulse`: a brief swell. A warm emphasis ("huge", "love").
-- `nudge`: a small sideways shove. Contradiction or a punchline.
+There are no accents. Nothing bounces, shakes, tilts, swells, overshoots or lands with a jolt, and the type never
+acts out the toddler's voice. The renderer still knows older effects (`snap`, `spring`, `stamp`, `pop`, `drop`, and
+the accents) so that earlier plans replay, but never use them.
 
-- `wiggle`: a quick side-to-side shake that dies away. Protest, refusal, a tiny tantrum ("No.", "not ready").
-- `hop`: one happy bounce up and back. Delight, a win ("fine.", "yay").
-- `tilt`: leans over and stays leaning. Confusion or a question ("Late for what?").
+## Voice: premium, quiet, deliberate
 
-Entrance, playful:
-- `drop`: falls in from above and bounces as it lands, like a toy dropped on the floor. A blunt fact or a toddler
-  verdict ("four.", "the problem.").
+The copy is written in a toddler's voice; the motion is not. Let the words carry the humour and the feeling, and let
+the type behave like a well-made editorial layout coming into place.
 
-## Voice: make it feel like Tiny Soho
-
-The slides are written in a toddler's voice: sleepy, stubborn, dramatic, funny, then suddenly sweet. Parents scroll
-past polished ads; they stop for something that feels like their own child. Let the type act like the child would.
-
-- **One signature moment per slide.** Find the word or phrase that carries the joke or the feeling and give it the
-  biggest move, the one a parent will smile at: a `wiggle` on a refusal, a `droop` on a disaster, a `drop` on the
-  punchline, a `hop` when she's fine again.
-- **The rose words act too.** Rose (pink) words are the designer's emphasis. Give each rose phrase a small accent that
-  matches what it means: `pulse` for warmth, `nudge` for a contradiction, `wiggle` for a refusal, `hop` for delight,
-  `tilt` for a question or confusion. Keep these smaller than the signature moment (`amount` about 0.6–0.8).
-- **The hook gets a gesture too.** The hook is on screen from frame 0 and never enters with motion, but once
-  everything has landed (from about 2.0 s) it may take one accent on its key word, such as a `hop` on "I'm 2," or a
-  `tilt` on a question. That gives the held part of the clip life without costing the first-second read.
-- **Timing is the joke.** Leave a short beat (0.2–0.4 s) before the signature moment, after the words around it have
-  settled. Never fire two accents at once: space them at least 0.3 s apart so each one reads.
-- **Match the mood of the line.** Sleepy lines `slow`; rushed or bossy lines `snap`; happy lines `spring` or `hop`;
-  sad ones `slow` or `droop`. Parent-voice lines (advice, reassurance) stay calm: `rise` or `fade`.
-- **Never at the cost of reading.** At most three accented phrases per slide, including the hook's. Every word must
-  be in and sharp by 2.0 s; accents start after their word has entered and settle by 3.2 s, leaving at least 2 s of
-  calm hold at the end. An accent never pushes a word into another line, an edge or the child.
-- Recipes, tips and recommendations are calmer than stories: tidy `pop` and `rise`, one small accent at most.
+- **One considered moment per slide.** Give the line or rose phrase that carries the joke or the feeling its own
+  entrance: a `slow` reveal after a short pause (0.2–0.4 s), once the words before it have settled. Timing is the
+  emphasis, not movement.
+- **One rhythm.** Supporting lines arrive in reading order with the same entrance and an even cadence (0.15–0.35 s
+  between lines, 0.03–0.06 s between words when staggered). Entrances last 0.45–0.8 s. Lifts stay small (`amount`
+  12–24 px; slides 16–28 px).
+- **Rose words.** They are the designer's emphasis. Keep them in their line's rhythm, or give the key one the
+  considered moment above. Never decorate them with extra motion.
+- **Never at the cost of reading.** The hook is still from frame 0. Every word is in and sharp by 2.0 s, then a long,
+  calm hold.
+- Recipes, tips and recommendations: a tidy cascade by section (heading, then its lines), list items with `fade` or
+  a small `rise`.
 
 ## Budget
 
@@ -146,9 +132,11 @@ child. Do not chase a 9 on a line that already reads cleanly.
    motion from `motion.jpg`: it shows what happens between the 0.5 s samples. Score each 1–10:
    - **Readable**: hook clear on frame 0; every line legible at phone size; nothing sits on the child.
    - **Faithful**: words, punctuation and rose emphasis match the original exactly.
-   - **Meaningful motion**: each effect fits its words; the gags land; nothing distracts.
+   - **Meaningful motion**: the considered moment lands; the rhythm is even and calm; nothing feels playful or
+     cartoonish; nothing distracts.
    - **Polish**: no collisions mid-motion, no text near the edges, a calm hold at the end.
-   For every accent or stamp, grab frames during the motion with `--frames` and look at them. Never judge motion
+   For every cue that passes near another line or the child, grab frames during the motion with `--frames` and
+   look at them. Never judge motion
    by calculation alone.
 5. If `check.py` fails or any score is below 8, change the plan and repeat step 4. Stop at the mode's round limit (see Budget), or sooner
    when everything scores 8 or higher.
